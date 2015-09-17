@@ -9,6 +9,10 @@ import bebida.Bebida;
 import bebida.Cafe;
 import decor.Canela;
 import decor.Chantilly;
+import pagamento.CartaoDeCredito;
+import pagamento.Dinheiro;
+import pagamento.Pagamento;
+import pedido.Pedido;
 
 /**
  *
@@ -20,23 +24,28 @@ public class Cafeteria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Bebida cafe = new Cafe();
-        System.out.println("Dados do Cafe: ");
-        System.out.println("Nome: " +cafe.getNome());
-        System.out.println("Custo " + cafe.custo());
-        
-        System.out.println("++ Adicionando condimento");
+        Bebida cafe = new Cafe();
         cafe = new Chantilly(cafe);
-        System.out.println("Novos dados do café: ");
-        System.out.println("Nome: " +cafe.getNome());
-        System.out.println("Custo: " +cafe.custo());
-        
-        System.out.println("++ Adicionando condimento");
-        cafe = new Canela(cafe);
-        System.out.println("Novos dados do café: ");
-        System.out.println("Nome: " +cafe.getNome());
-        System.out.println("Custo: " +cafe.custo());
-        
+
+        Pedido p = new Pedido();
+        Pagamento pgto = new CartaoDeCredito();
+        p.addItem(cafe);
+
+        System.out.println("Total do seu pedido: " + p.somaTotal());
+
+        System.out.println("------------");
+
+        System.out.println("---> Fechando o Pedido");
+        p.fecharPedido();
+
+        p.addItem(cafe);
+
+        System.out.println("---> Abrindo o pedido novamente:");
+        p.abrirPedido();
+        p.addItem(cafe);
+        p.fecharPedido();
+        p.pagar(pgto);
+
     }
-    
+
 }

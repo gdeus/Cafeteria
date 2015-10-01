@@ -9,6 +9,10 @@ import bebida.Bebida;
 import bebida.Cafe;
 import decor.Canela;
 import decor.Chantilly;
+import decorLanche.Bacon;
+import lanche.Lanche;
+import lanche.XSalada;
+import lanche.XTudo;
 import pagamento.CartaoDeCredito;
 import pagamento.Dinheiro;
 import pagamento.Pagamento;
@@ -45,6 +49,22 @@ public class Cafeteria {
         p.addItem(cafe);
         p.fecharPedido();
         p.pagar(pgto);
+        
+        System.out.println("----------Lanche----------");
+        Lanche x = new XSalada();
+        x.prepararLanche();
+        System.out.println("Meu lanche inicial: " + x.getNome() + "\tValor: " + x.custo());
+        x = new Bacon(x);
+        x.prepararLanche();
+        System.out.println("----------Adicionando bacon----------");
+        System.out.println("Meu lanche: " + x.getNome() + "\tValor: " + x.custo());
+        
+        System.out.println("----------X-TUDO----------");
+        Lanche l = new XTudo();
+        l.prepararLanche();
+        System.out.println("Meu lanche: " + l.getNome() + "\tValor: " + l.custo());
+        
+        
 
     }
 

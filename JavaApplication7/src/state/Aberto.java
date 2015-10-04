@@ -6,6 +6,7 @@
 package state;
 
 import bebida.Bebida;
+import lanche.Lanche;
 import pagamento.Pagamento;
 import pedido.Pedido;
 import pedido.Status;
@@ -45,6 +46,12 @@ public class Aberto extends Status{
 
     public void pagar(Pagamento pgto) {
         System.out.println("Seu pedido está em aberto e não pode ser pago");
+    }
+
+    @Override
+    public void addItem(Lanche l) {
+        System.out.println("Adicionando a seu pedido: " +l.getNome());
+        p.getLanches().add(l);
     }
 
     

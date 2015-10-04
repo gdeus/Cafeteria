@@ -10,6 +10,7 @@ import bebida.Cafe;
 import decor.Canela;
 import decor.Chantilly;
 import decorLanche.Bacon;
+import decorLanche.Calabresa;
 import lanche.Lanche;
 import lanche.XSalada;
 import lanche.XTudo;
@@ -28,22 +29,27 @@ public class Cafeteria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         Bebida cafe = new Cafe();
         cafe = new Chantilly(cafe);
-
+        
         Pedido p = new Pedido();
         Pagamento pgto = new CartaoDeCredito();
+        
+        Pedido po = new Pedido();
+        Pagamento pgt = new CartaoDeCredito();
+        
         p.addItem(cafe);
-
+        
         System.out.println("Total do seu pedido: " + p.somaTotal());
-
+        
         System.out.println("------------");
-
+        
         System.out.println("---> Fechando o Pedido");
         p.fecharPedido();
-
+        
         p.addItem(cafe);
-
+        
         System.out.println("---> Abrindo o pedido novamente:");
         p.abrirPedido();
         p.addItem(cafe);
@@ -64,8 +70,25 @@ public class Cafeteria {
         l.prepararLanche();
         System.out.println("Meu lanche: " + l.getNome() + "\tValor: " + l.custo());
         
+        System.out.println("----- PEDIDO COM LANCHE E BEBIDA -----");
+        Bebida b = new Cafe();
+        Lanche xl = new XSalada();
+        xl.prepararLanche();
+        xl = new Calabresa(xl);
+        System.out.println("Seu lanche: " + xl.getNome() + "\tValor: " + xl.custo());
+        po.abrirPedido();
+        po.addItem(xl);
         
-
+        b = new Canela(b);
+        b = new Chantilly(b);
+        b = new Chantilly(b);
+        System.out.println("Sua bebida " + b.getNome() + "\tValor: " + b.custo());
+        po.addItem(b);
+        
+        System.out.println("Total do seu Pedido: " + po.somaTotal());
+        po.fecharPedido();
+        po.pagar(pgt);
+        
     }
-
+    
 }

@@ -6,6 +6,7 @@
 package pedido;
 
 import bebida.Bebida;
+import lanche.Lanche;
 import pagamento.Pagamento;
 
 /**
@@ -14,6 +15,7 @@ import pagamento.Pagamento;
  */
 public abstract class Status {
     public abstract void addItem(Bebida b);
+    public abstract void addItem(Lanche l);
     public abstract void fecharPedido();
     public abstract void abrirPedido();
     

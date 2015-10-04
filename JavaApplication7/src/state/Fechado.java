@@ -6,6 +6,7 @@
 package state;
 
 import bebida.Bebida;
+import lanche.Lanche;
 import pagamento.Pagamento;
 import pedido.Pedido;
 import pedido.Status;
@@ -14,22 +15,20 @@ import pedido.Status;
  *
  * @author UTFPR
  */
-public class Fechado extends Status{
-    
+public class Fechado extends Status {
+
     Pedido p;
     Pagamento pgto;
 
     public Fechado(Pedido p) {
         this.p = p;
     }
-    
-    
+
     @Override
     public void addItem(Bebida b) {
         System.out.println("Seu pedido está fechado. Não é possível adicionar mais nada");
     }
 
-    
     public void fecharPedido() {
         System.out.println("Esse pedido já foi fechado");
     }
@@ -45,5 +44,11 @@ public class Fechado extends Status{
         pgto = p;
         pgto.pagar();
     }
-    
+
+    @Override
+    public void addItem(Lanche l) {
+        System.out.println("Seu pedido esta fechado nao podemos adicionar nada a ele");
+
+    }
+
 }

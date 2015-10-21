@@ -18,27 +18,58 @@ import state.Aberto;
  */
 public class Pedido {
 
-    ArrayList<Bebida> bebidas = new ArrayList();
-    ArrayList<Lanche> lanches = new ArrayList();
-    Pedido p;
-
     private Status estado;
-
-    public ArrayList<Bebida> getBebidas() {
-        return bebidas;
-    }
-    
-    public ArrayList<Lanche> getLanches() {
-        return lanches;
-    }
+    ArrayList<Item> item;
 
     public Pedido() {
-        this.bebidas = new ArrayList();
+        this.item = new ArrayList();
         this.estado = new Aberto(this);
+    }
+
+    public void pagar(Pagamento p) {
+        estado.pagar(p);
+    }
+
+    public void pago() {
+        item.clear();
+    }
+
+    public void fecharPedido() {
+        estado.fecharPedido();
     }
 
     public void abrirPedido() {
         estado.abrirPedido();
+    }
+
+    public boolean verificaPedido() {
+        boolean l = false;
+        boolean b = false;
+        boolean t = false;
+        for (Item item1 : item) {
+            if (item1 instanceof Bebida) {
+                b = true;
+            }
+            if (item1 instanceof Lanche) {
+                l = true;
+            }
+            if (((l == true) && (b == true))) {
+                t = true;
+            }
+        }
+        return t;
+    }
+
+    public float caculaTotal() {
+        float valorTotal = 0;
+        for (Item item1 : item) {
+            valorTotal += item1.custo();
+        }
+        return valorTotal;
+    }
+
+    public void addItem(Item i) {
+        estado.addItem(i);
     }
 
     public Status getEstado() {
@@ -49,33 +80,12 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public void fecharPedido() {
-        estado.fecharPedido();
-       
-    }
-    
-    public void pagar(Pagamento p){
-        estado.pagar(p);
+    public ArrayList<Item> getItem() {
+        return item;
     }
 
-    public void addItem(Bebida b) {
-        estado.addItem(b);
-    }
-    
-    public void addItem(Lanche l) {
-        estado.addItem(l);
-    }
-
-    public float somaTotal() {
-        float total = 0;
-        for (Bebida bebida : bebidas) {
-            for (Lanche lanche : lanches){
-            total = bebida.custo() + lanche.custo();
-            }
-        }
-        
-        return total;
-
+    public void setItem(ArrayList<Item> item) {
+        this.item = item;
     }
 
 }

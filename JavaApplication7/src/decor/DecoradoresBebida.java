@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package decorLanche;
+package decor;
 
-import lanche.Lanche;
+import bebida.Bebida;
 
 /**
  *
  * @author UTFPR
  */
-public abstract class Decoradores extends Lanche {   
+public abstract class DecoradoresBebida extends Bebida{
     
-    Lanche l;
+    Bebida b;
     
     @Override
     public abstract String getNome();
-
-}
+    
+    
+ }

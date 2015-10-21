@@ -11,7 +11,7 @@ import bebida.Bebida;
  *
  * @author UTFPR
  */
-public class Canela extends Decoradores{
+public class Canela extends DecoradoresBebida{
     private Bebida b;
 
     public Canela(Bebida b) {

@@ -8,6 +8,7 @@ package state;
 import bebida.Bebida;
 import lanche.Lanche;
 import pagamento.Pagamento;
+import pedido.Item;
 import pedido.Pedido;
 import pedido.Status;
 
@@ -15,7 +16,7 @@ import pedido.Status;
  *
  * @author UTFPR
  */
-public class Fechado extends Status {
+public class Fechado implements Status {
 
     Pedido p;
     Pagamento pgto;
@@ -25,30 +26,25 @@ public class Fechado extends Status {
     }
 
     @Override
-    public void addItem(Bebida b) {
-        System.out.println("Seu pedido está fechado. Não é possível adicionar mais nada");
+    public void addItem(Item i) {
+        System.out.println("Seu pedido esta fechado. Item nao pode ser adicionado");
     }
 
+    @Override
     public void fecharPedido() {
-        System.out.println("Esse pedido já foi fechado");
+        System.out.println("Este pedido ja esta fechado. Voce nao pode fecha-lo");
     }
 
     @Override
     public void abrirPedido() {
-        System.out.println("Ok, vamos reabrir o seu pedido");
+        System.out.println("Ok. Vamos lá. Estamos reabrindo seu pedido");
         p.setEstado(new Aberto(p));
     }
 
     @Override
-    public void pagar(Pagamento p) {
-        pgto = p;
+    public void pagar(Pagamento pgto) {
         pgto.pagar();
-    }
-
-    @Override
-    public void addItem(Lanche l) {
-        System.out.println("Seu pedido esta fechado nao podemos adicionar nada a ele");
-
+        p.pago();
     }
 
 }

@@ -8,6 +8,7 @@ package state;
 import bebida.Bebida;
 import lanche.Lanche;
 import pagamento.Pagamento;
+import pedido.Item;
 import pedido.Pedido;
 import pedido.Status;
 
@@ -15,12 +16,11 @@ import pedido.Status;
  *
  * @author UTFPR
  */
-public class Aberto extends Status{
+public class Aberto implements Status {
 
     Pedido p;
-    
-    public Aberto(){
-        
+
+    public Aberto() {
     }
 
     public Aberto(Pedido p) {
@@ -28,30 +28,39 @@ public class Aberto extends Status{
     }
 
     @Override
-    public void addItem(Bebida b){
-        System.out.println("Adicionando ao seu pedido: " +b.getNome());
-        p.getBebidas().add(b);
+    public void addItem(Item i) {
+        if (i instanceof Bebida) {
+            Bebida b = (Bebida) i;
+            System.out.println("Adicionando ao seu pedido(bebida) " + b.getNome());
+            p.getItem().add(b);
+        }
+        if (i instanceof Lanche) {
+            Lanche l = (Lanche) i;
+            l.prepararLanche();
+            System.out.println("Adicionando ao seu pedido(lanche) " + l.getNome());
+            p.getItem().add(l);
+        }
     }
 
     @Override
     public void fecharPedido() {
-        System.out.println("Ok, vamos lá. Fecharemos seu pedido");
-        p.setEstado(new Fechado(p));
+        if (p.verificaPedido()) {
+            p.setEstado(new Fechado(p));
+            System.out.println("ok, vamos lá. Fecharemos o seu pedido.");
+        } else {
+            System.out.println("O seu pedido nao tem 1 lanche e 1 bebida. Não é possivel fechar o pedido.");
+        }
     }
 
     @Override
     public void abrirPedido() {
-        System.out.println("Seu pedido já está aberto!!!");
-    }
-
-    public void pagar(Pagamento pgto) {
-        System.out.println("Seu pedido está em aberto e não pode ser pago");
+        System.out.println("Seu pedido já esta aberto. Não pode ser reaberto");
     }
 
     @Override
-    public void addItem(Lanche l) {
-        System.out.println("Adicionando a seu pedido: " +l.getNome());
-        p.getLanches().add(l);
+    public void pagar(Pagamento p) {
+        System.out.println("Seu pedido esta aberto."
+                + " Nao é possivel fazer o pagamento");
     }
 
     

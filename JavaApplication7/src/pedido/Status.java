@@ -13,12 +13,13 @@ import pagamento.Pagamento;
  *
  * @author UTFPR
  */
-public abstract class Status {
-    public abstract void addItem(Bebida b);
-    public abstract void addItem(Lanche l);
+public interface Status {
+
+    public abstract void addItem(Item i);
+
     public abstract void fecharPedido();
+
     public abstract void abrirPedido();
-    
+
     public abstract void pagar(Pagamento p);
-    
 }

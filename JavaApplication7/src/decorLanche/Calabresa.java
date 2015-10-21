@@ -6,6 +6,7 @@
 package decorLanche;
 
 import lanche.Lanche;
+import lanche.XSalada;
 
 /**
  *
@@ -13,20 +14,22 @@ import lanche.Lanche;
  */
 public class Calabresa extends Decoradores {
 
-    private Lanche l;
+    Lanche x;
 
-    public Calabresa(Lanche l) {
-        this.l = l;
+    public Calabresa(Lanche x) {
+        this.x = x;
     }
 
     @Override
     public String getNome() {
-        return l.getNome() + " com calabresa";
+       
+       return (this.x.getNome() + ", com mais Calabresa");
+        
+            
     }
 
     @Override
     public float custo() {
-        return l.custo() + (1.5f);
+        return (this.x.custo() + 1.5f);
     }
-
 }

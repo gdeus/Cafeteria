@@ -3,19 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package decorLanche;
-
-import lanche.Lanche;
+package pedido;
 
 /**
  *
  * @author UTFPR
  */
-public abstract class Decoradores extends Lanche {   
-    
-    Lanche l;
-    
-    @Override
-    public abstract String getNome();
+public abstract class Item {
 
+    public abstract float custo();
+
+    public abstract String getNome();
 }

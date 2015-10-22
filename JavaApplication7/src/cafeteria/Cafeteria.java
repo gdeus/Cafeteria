@@ -15,6 +15,7 @@ import decorLanche.Calabresa;
 import lanche.Lanche;
 import lanche.XSalada;
 import lanche.XTudo;
+import modelo.*;
 import pagamento.CartaoDeCredito;
 import pagamento.Dinheiro;
 import pagamento.Pagamento;
@@ -32,13 +33,18 @@ public class Cafeteria {
      */
     public static void main(String[] args) {
        // TODO code application logic here     
-        //  Pessoa garcom = new Garcom("root", "123");
-        //  Pessoa gerente = new Gerente("jose", "123");
+        Pessoa garcom = new Garcom("TESTE", "123");
+        Pessoa gerente = new Gerente("jose", "123");
         Pagamento pagamento = new CartaoDeCredito();
 
-        PedidoProxy pe = PedidoProxy.getInstance();
+        PedidoProxy pi = new PedidoProxy(garcom);
+        PedidoProxy px = new PedidoProxy(gerente);
+        
+        px.setP(gerente); 
+        pi.setP(garcom);
 
-    //        fp.setP(gerente);
+  
+        pi.abrirPedido();
         Bebida cafe = new Cafe();
         cafe = new Chantilly(cafe);
 
@@ -46,20 +52,19 @@ public class Cafeteria {
         x = new Calabresa(x);
         
        
-        pe.addItem(x);
+        
+        pi.addItem(x);
         x.prepararLanche();
-        System.out.println("---- Não vai fechar o pedido... ---- NAO VAI FECHAR PEDIDO");
-        pe.fecharPedido();
+        System.out.println("Não deve fechar o pedido pois nao contem dois itens");
+        pi.fecharPedido();
+        pi.addItem(cafe);
         
-        System.out.println("---- adicionando café no pedido ----");
-        pe.addItem(cafe);
+        System.out.println("Dois itens agora pode ser fechado!!! ");
         
-        System.out.println("Valor total: " + pe.calculaTotal());
+        pi.fecharPedido();
+        System.out.println(pi.calculaTotal());
+        pi.pagar(pagamento);
         
-        System.out.println("Contém um lanche e uma bebida por tanto pode ser fechado");
-        
-        pe.fecharPedido();
-        pe.pagar(pagamento);
         
 
     }

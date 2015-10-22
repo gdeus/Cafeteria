@@ -6,16 +6,16 @@
 package decor;
 
 import bebida.Bebida;
-import pedido.Item;
+import pedido.ItensDaVenda;
 
 /**
  *
  * @author UTFPR
  */
 public class Chantilly extends DecoradoresBebida{
-    private Item b;
+    private ItensDaVenda b;
 
-    public Chantilly(Item b) {
+    public Chantilly(ItensDaVenda b) {
            this.b = b;
     }
 

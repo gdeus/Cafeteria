@@ -15,7 +15,7 @@ import pagamento.Pagamento;
  */
 public interface Status {
 
-    public abstract void addItem(Item i);
+    public abstract void addItem(ItensDaVenda i);
 
     public abstract void fecharPedido();
 

@@ -8,7 +8,7 @@ package state;
 import bebida.Bebida;
 import lanche.Lanche;
 import pagamento.Pagamento;
-import pedido.Item;
+import pedido.ItensDaVenda;
 import pedido.Pedido;
 import pedido.Status;
 
@@ -26,7 +26,7 @@ public class Fechado implements Status {
     }
 
     @Override
-    public void addItem(Item i) {
+    public void addItem(ItensDaVenda i) {
         System.out.println("Seu pedido esta fechado. Item nao pode ser adicionado");
     }
 

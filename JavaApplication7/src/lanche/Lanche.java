@@ -5,13 +5,13 @@
  */
 package lanche;
 
-import pedido.Item;
+import pedido.ItensDaVenda;
 
 /**
  *
  * @author UTFPR
  */
-public abstract class Lanche extends Item{
+public abstract class Lanche extends ItensDaVenda{
 
     String nome;
 

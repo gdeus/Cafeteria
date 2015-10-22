@@ -5,13 +5,13 @@
  */
 package bebida;
 
-import pedido.Item;
+import pedido.ItensDaVenda;
 
 /**
  *
  * @author UTFPR
  */
-public abstract class Bebida extends Item{
+public abstract class Bebida extends ItensDaVenda{
     String nome;
 
     public String getNome() {

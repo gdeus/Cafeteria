@@ -12,8 +12,8 @@ import pedido.*;
  *
  * @author gabri
  */
-public interface IFolder {
-    public abstract void fazerPedido(Item i);
+public interface IPedido {
+    public abstract void addItem(ItensDaVenda i);
     public abstract void fecharPedido();
     public abstract void pagar(Pagamento pgto);
     public abstract void abrirPedido();

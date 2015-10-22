@@ -19,7 +19,7 @@ import state.Aberto;
 public class Pedido {
 
     private Status estado;
-    ArrayList<Item> item;
+    ArrayList<ItensDaVenda> item;
 
     public Pedido() {
         this.item = new ArrayList();
@@ -46,7 +46,7 @@ public class Pedido {
         boolean l = false;
         boolean b = false;
         boolean t = false;
-        for (Item item1 : item) {
+        for (ItensDaVenda item1 : item) {
             if (item1 instanceof Bebida) {
                 b = true;
             }
@@ -62,13 +62,13 @@ public class Pedido {
 
     public float calculaTotal() {
         float valorTotal = 0;
-        for (Item item1 : item) {
+        for (ItensDaVenda item1 : item) {
             valorTotal += item1.custo();
         }
         return valorTotal;
     }
 
-    public void addItem(Item i) {
+    public void addItem(ItensDaVenda i) {
         estado.addItem(i);
     }
 
@@ -80,11 +80,11 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public ArrayList<Item> getItem() {
+    public ArrayList<ItensDaVenda> getItem() {
         return item;
     }
 
-    public void setItem(ArrayList<Item> item) {
+    public void setItem(ArrayList<ItensDaVenda> item) {
         this.item = item;
     }
 }

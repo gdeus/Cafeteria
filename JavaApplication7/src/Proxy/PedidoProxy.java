@@ -6,44 +6,54 @@
 package Proxy;
 
 import pagamento.Pagamento;
-import pedido.Item;
+import pedido.ItensDaVenda;
 import pedido.Pedido;
 
 /**
  *
  * @author gabri
  */
-public class Folder implements IFolder {
+public class PedidoProxy implements IPedido {
 
-    Pedido p = new Pedido();
+    Pedido pe;
 
-    public Folder() {
+    private static PedidoProxy instance;
 
+    public PedidoProxy() {
+        pe = new Pedido();
     }
 
-    @Override
-    public void fazerPedido(Item i) {
-        p.addItem(i);
+    public static PedidoProxy getInstance() {
+        if (instance == null) {
+            instance = new PedidoProxy();
+        }
+        return instance;
     }
 
     @Override
     public void fecharPedido() {
-        p.fecharPedido();
+        pe.fecharPedido();
     }
 
     @Override
     public void pagar(Pagamento pgto) {
-        p.pagar(pgto);
+        pe.pagar(pgto);
     }
 
     @Override
     public void abrirPedido() {
-        p.abrirPedido();
+        pe.abrirPedido();
     }
 
     @Override
     public float calculaTotal() {
-        return p.calculaTotal();
+        return pe.calculaTotal();
+    }
+
+    public void addItem(ItensDaVenda i) {
+
+        pe.addItem(i);
+
     }
 
 }

@@ -5,7 +5,7 @@
  */
 package cafeteria;
 
-import Proxy.FolderProxy;
+import Proxy.PedidoProxy;
 import bebida.Bebida;
 import bebida.Cafe;
 import decor.Canela;
@@ -18,9 +18,8 @@ import lanche.XTudo;
 import pagamento.CartaoDeCredito;
 import pagamento.Dinheiro;
 import pagamento.Pagamento;
-import pedido.Item;
+import pedido.ItensDaVenda;
 import pedido.Pedido;
-import modelo.*;
 
 /**
  *
@@ -33,48 +32,36 @@ public class Cafeteria {
      */
     public static void main(String[] args) {
        // TODO code application logic here     
-        Pessoa garcom = new Garcom("root", "123");
-        Pessoa gerente = new Gerente("jose", "123");
+        //  Pessoa garcom = new Garcom("root", "123");
+        //  Pessoa gerente = new Gerente("jose", "123");
         Pagamento pagamento = new CartaoDeCredito();
 
-        FolderProxy fp = FolderProxy.getInstance();
+        PedidoProxy pe = PedidoProxy.getInstance();
 
-        fp.setP(gerente);
-
+    //        fp.setP(gerente);
         Bebida cafe = new Cafe();
         cafe = new Chantilly(cafe);
 
         Lanche x = new XSalada();
         x = new Calabresa(x);
-
-        fp.fazerPedido(x);
-        System.out.println("::NAO VAI FAZER PEDIDO::");
-
-        fp.fecharPedido();
-        System.out.println("::NAO VAI FECHAR::");
-
-        fp.setP(garcom);
-        fp.fazerPedido(x);
-        System.out.println("::Adicionou XSalada + calabresa::");
-        System.out.println(" Custo: R$" + fp.calculaTotal());
-        //Lanche xS = new XSalada();
-        //fp.fazerPedido(xS);
-        fp.fecharPedido();
-        System.out.println("Não deve fechar");
-        fp.fazerPedido(cafe);
-        System.out.println("adicionando café ");
-        System.out.println(" Custo: R$" + fp.calculaTotal());
-        fp.fecharPedido();
-        fp.abrirPedido();
-        fp.fecharPedido();
-        System.out.println("fechando");
-        fp.pagar(pagamento);
-        System.out.println("pagando");
-        fp.abrirPedido();
-        fp.fazerPedido(cafe);
-        System.out.println("adicionando café");
-        System.out.println(" Custo: R$" + fp.calculaTotal());
         
+       
+        pe.addItem(x);
+        x.prepararLanche();
+        System.out.println("---- Não vai fechar o pedido... ---- NAO VAI FECHAR PEDIDO");
+        pe.fecharPedido();
+        
+        System.out.println("---- adicionando café no pedido ----");
+        pe.addItem(cafe);
+        
+        System.out.println("Valor total: " + pe.calculaTotal());
+        
+        System.out.println("Contém um lanche e uma bebida por tanto pode ser fechado");
+        
+        pe.fecharPedido();
+        pe.pagar(pagamento);
+        
+
     }
-    
+
 }

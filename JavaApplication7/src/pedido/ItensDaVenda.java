@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package pedido;
 
 /**
  *
- * @author gabri
+ * @author UTFPR
  */
-public class Gerente extends Pessoa{
+public abstract class ItensDaVenda {
 
-    public Gerente(String login, String password) {
-        super(login, password);
-    }
-    
+    public abstract float custo();
+
+    public abstract String getNome();
 }

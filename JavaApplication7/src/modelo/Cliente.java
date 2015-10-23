@@ -14,4 +14,6 @@ public class Cliente extends Pessoa{
     public Cliente(String login, String password) {
         super(login, password);
     }
+
+    
 }   

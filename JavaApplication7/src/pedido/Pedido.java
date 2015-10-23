@@ -5,9 +5,13 @@
  */
 package pedido;
 
+import Proxy.IPedido;
 import bebida.Bebida;
-import java.util.ArrayList;
+import java.util.*;
 import lanche.Lanche;
+import modelo.Pessoa;
+import observer.Observer;
+import observer.Subject;
 import pagamento.Dinheiro;
 import pagamento.Pagamento;
 import state.Aberto;
@@ -16,13 +20,16 @@ import state.Aberto;
  *
  * @author UTFPR
  */
-public class Pedido {
+public class Pedido implements Subject, IPedido {
 
     private Status estado;
     ArrayList<ItensDaVenda> item;
+    private ArrayList<Observer> observadores;
 
     public Pedido() {
         this.item = new ArrayList();
+        this.item = new ArrayList<>();
+        this.observadores = new ArrayList<>();
         this.estado = new Aberto(this);
     }
 
@@ -84,7 +91,33 @@ public class Pedido {
         return item;
     }
 
+    public ArrayList<Observer> getObservadores() {
+        return observadores;
+    }
+
+    public void setObservadores(ArrayList<Observer> observadores) {
+        this.observadores = observadores;
+    }
+    
+
     public void setItem(ArrayList<ItensDaVenda> item) {
         this.item = item;
+    }
+
+    @Override
+    public void addObservador(Pessoa p) {
+        observadores.add(p);
+    }
+
+    @Override
+    public void removeObservador(Pessoa p) {
+        observadores.remove(p);
+    }
+
+    @Override
+    public void notificarTodos() {
+        for (Observer observador : observadores) {
+            observador.notificar();
+        }
     }
 }

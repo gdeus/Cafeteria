@@ -5,11 +5,13 @@
  */
 package modelo;
 
+import observer.Observer;
+
 /**
  *
  * @author gabri
  */
-    public abstract class Pessoa {
+    public abstract class Pessoa implements Observer{
 
     private String login;
     private String password;
@@ -33,6 +35,11 @@ package modelo;
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    @Override
+    public void notificar() {
+        System.out.println("Usuario \"" + login + "\" sendo notificado");
     }
 
 }

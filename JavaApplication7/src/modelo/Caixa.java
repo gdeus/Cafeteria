@@ -14,5 +14,6 @@ public class Caixa extends Pessoa{
     public Caixa(String login, String password) {
         super(login, password);
     }
+
     
 }

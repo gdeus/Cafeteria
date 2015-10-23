@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package observer;
 
 /**
  *
- * @author gabri
+ * @author UTFPR
  */
-public class Gerente extends Pessoa{
-
-    public Gerente(String login, String password) {
-        super(login, password);
-    }
-
-    
+public interface Observer {
+    public void notificar();
 }

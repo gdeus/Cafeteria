@@ -35,16 +35,18 @@ public class Cafeteria {
        // TODO code application logic here     
         Pessoa garcom = new Garcom("TESTE", "123");
         Pessoa gerente = new Gerente("jose", "123");
+        Pessoa caixa = new Caixa("Caixa", "123456");
+        Pessoa cozinha = new Cozinheiro("Cozinha", "123456"); 
         Pagamento pagamento = new CartaoDeCredito();
 
-        PedidoProxy pi = new PedidoProxy(garcom);
-        PedidoProxy px = new PedidoProxy(gerente);
+        PedidoProxy pi = new PedidoProxy(caixa, cozinha);
+        PedidoProxy px = new PedidoProxy(caixa, cozinha);
         
         px.setP(gerente); 
         pi.setP(garcom);
 
   
-        pi.abrirPedido();
+        
         Bebida cafe = new Cafe();
         cafe = new Chantilly(cafe);
 

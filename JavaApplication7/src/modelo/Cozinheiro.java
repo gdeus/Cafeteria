@@ -14,5 +14,6 @@ public class Cozinheiro extends Pessoa{
     public Cozinheiro(String login, String password) {
         super(login, password);
     }
+
     
 }
